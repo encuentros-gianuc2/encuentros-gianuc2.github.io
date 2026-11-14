@@ -1,128 +1,64 @@
+/* Slider de banners (JavaScript puro, sin jQuery) + menú móvil */
+(function () {
+  "use strict";
 
-window.onerror=function(desc,page,line,chr){}
-
-$(function(){
- SI.Files.stylizeAll();
- slider.init();
-
- $('input.text-default').each(function(){
-  $(this).attr('default',$(this).val());
- }).focus(function(){
-  if($(this).val()==$(this).attr('default'))
-   $(this).val('');
- }).blur(function(){
-  if($(this).val()=='')
-   $(this).val($(this).attr('default'));
- });
-
- $('input.text,textarea.text').focus(function(){
-  $(this).addClass('textfocus');
- }).blur(function(){
-  $(this).removeClass('textfocus');
- });
-});
-var slider={
- num:-1,
- cur:0,
- cr:[],
- al:null,
- at:10*800,
- ar:true,
- init:function(){
-  if(!slider.data || !slider.data.length)
-   return false;
-
-  var d=slider.data;
-  slider.num=d.length;
-  var pos=Math.floor(Math.random()*1);//slider.num);
-  for(var i=0;i<slider.num;i++){
-   $('#'+d[i].id).css({left:((i-pos)*1000)});
-   $('#slide-nav').append('<a id="slide-link-'+i+'" href="#" onclick="slider.slide('+i+');return false;" onfocus="this.blur();">'+(i+1)+'</a>');
+  // ---- Menú móvil -------------------------------------------------------
+  var toggle = document.querySelector(".nav-toggle");
+  var menu = document.getElementById("nav-menu");
+  if (toggle && menu) {
+    toggle.addEventListener("click", function () {
+      var open = menu.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", String(open));
+    });
   }
 
-  $('img,div#slide-controls',$('div#slide-holder')).fadeIn();
-  slider.text(d[pos]);
-  slider.on(pos);
-  slider.cur=pos;
-  window.setTimeout('slider.auto();',slider.at);
- },
- auto:function(){
-  if(!slider.ar)
-   return false;
+  // ---- Slider (solo en la página de inicio) ------------------------------
+  var slider = document.querySelector(".slider");
+  if (!slider) return;
 
-  var next=slider.cur+1;
-  if(next>=slider.num) next=0;
-  slider.slide(next);
- },
- slide:function(pos){
-  if(pos<0 || pos>=slider.num || pos==slider.cur)
-   return;
+  var slides = Array.prototype.slice.call(slider.querySelectorAll(".slide"));
+  var caption = slider.querySelector(".slider-caption");
+  var dots = slider.querySelector(".slider-dots");
+  var current = 0;
+  var timer = null;
+  var DELAY = 5000;
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  window.clearTimeout(slider.al);
-  slider.al=window.setTimeout('slider.auto();',slider.at);
+  slides.forEach(function (_, i) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.textContent = i + 1;
+    b.setAttribute("aria-label", "Banner " + (i + 1));
+    b.addEventListener("click", function () { go(i); restart(); });
+    dots.appendChild(b);
+  });
 
-  var d=slider.data;
-  for(var i=0;i<slider.num;i++)
-   $('#'+d[i].id).stop().animate({left:((i-pos)*1000)},1000,'swing');
-  
-  slider.on(pos);
-  slider.text(d[pos]);
-  slider.cur=pos;
- },
- on:function(pos){
-  $('#slide-nav a').removeClass('on');
-  $('#slide-nav a#slide-link-'+pos).addClass('on');
- },
- text:function(di){
-  slider.cr['a']=di.desc;
-  slider.ticker('#slide-desc',di.desc,0,'a');
- },
- ticker:function(el,text,pos,unique){
-  if(slider.cr[unique]!=text)
-   return false;
+  function go(n) {
+    current = (n + slides.length) % slides.length;
+    slides.forEach(function (s, i) {
+      s.classList.toggle("is-active", i === current);
+      s.setAttribute("aria-hidden", String(i !== current));
+      s.tabIndex = -1;
+      var a = s.querySelector("a");
+      if (a) a.tabIndex = i === current ? 0 : -1;
+    });
+    Array.prototype.forEach.call(dots.children, function (d, i) {
+      d.setAttribute("aria-current", String(i === current));
+    });
+    caption.textContent = slides[current].getAttribute("data-desc") || "";
+  }
 
-  ctext=text.substring(0,pos)+(pos%2?'-':'_');
-  $(el).html(ctext);
+  function start() { if (!reduceMotion) timer = setInterval(function () { go(current + 1); }, DELAY); }
+  function stop() { clearInterval(timer); timer = null; }
+  function restart() { stop(); start(); }
 
-  if(pos==text.length)
-   $(el).html(text);
-  else
-   window.setTimeout('slider.ticker("'+el+'","'+text+'",'+(pos+1)+',"'+unique+'");',30);
- }
-};
-// STYLING FILE INPUTS 1.0 | Shaun Inman <http://www.shauninman.com/> | 2007-09-07
-if(!window.SI){var SI={};};
-SI.Files={
- htmlClass:'SI-FILES-STYLIZED',
- fileClass:'file',
- wrapClass:'cabinet',
- 
- fini:false,
- able:false,
- init:function(){
-  this.fini=true;
- },
- stylize:function(elem){
-  if(!this.fini){this.init();};
-  if(!this.able){return;};
-  
-  elem.parentNode.file=elem;
-  elem.parentNode.onmousemove=function(e){
-   if(typeof e=='undefined') e=window.event;
-   var ox=oy=0;
-   var elem=this;
-   if(elem.offsetParent){
-    ox=elem.offsetLeft;
-    oy=elem.offsetTop;
-    while(elem=elem.offsetParent){
-     ox+=elem.offsetLeft;
-     oy+=elem.offsetTop;
-    };
-   };
-  };
- },
- stylizeAll:function(){
-  if(!this.fini){this.init();};
-  if(!this.able){return;};
- }
-};
+  slider.querySelector(".prev").addEventListener("click", function () { go(current - 1); restart(); });
+  slider.querySelector(".next").addEventListener("click", function () { go(current + 1); restart(); });
+  slider.addEventListener("mouseenter", stop);
+  slider.addEventListener("mouseleave", start);
+  slider.addEventListener("focusin", stop);
+  slider.addEventListener("focusout", start);
+
+  go(0);
+  start();
+})();
