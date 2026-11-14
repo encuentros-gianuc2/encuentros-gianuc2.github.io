@@ -1,86 +1,97 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Encuentros GIANuC&sup2;</title>
-    <meta name="author" content="Encuentros GIANuC&sup2;" />
-    <link rel="stylesheet" href="css/style.css" type="text/css" />
-    <link rel="icon" type="image/ico" href="img/favicon.png" /> 
- 
-    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="js/frames.js"></script>
-    <script type="text/javascript" src="js/slider.js"></script>
-    <script type="text/javascript">
-        if(!window.slider) 
-            var slider={};
-            slider.data=[{"id":"img-1","desc":"Vista aérea del Campus San Andrés de la UCSC"},
-                         {"id":"img-2","desc":"An a posteriori error analysis for an augmented discontinuous Galerkin method applied to Stokes problem"},
-			 {"id":"img-3","desc":"Velocity-vorticity-pressure mixed formulation for the Kelvin-Voigt-Brinkman-Forchheimer equations"},
-			 {"id":"img-4","desc":"Uplift-hypoplastic macroelement model for shallow foundations in sand under cyclic combined loading"},			 
-                         {"id":"img-5","desc":"A skew-symmetric-based mixed FEM for stationary MHD flows in highly porous media"},
-                         {"id":"img-6","desc":"A posteriori error analysis of a mixed finite element method for the stationary convective Brinkman-Forchheimer problem"}];
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Encuentros GIANuC&sup2;</title>
+  <meta name="author" content="Encuentros GIANuC&sup2;">
+  <meta name="description" content="Encuentros GIANuC²: Métodos Numéricos para Sistemas Multifísicos. Evento del Grupo de Investigación en Análisis Numérico y Cálculo Científico, Universidad Católica de la Santísima Concepción (UCSC), Chile.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="canonical" href="https://encuentros-gianuc2.github.io/">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/slider.js" defer></script>
 </head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-<body onmousedown='return false;' onselectstart='return false;'>
+  <nav class="topbar" aria-label="Enlaces institucionales">
+    <ul>
+      <li><a href="./">INICIO</a></li>
+      <li><a href="https://gianuc2.ucsc.cl" target="_blank" rel="noopener">GIANuC&sup2;-UCSC</a></li>
+      <li><a href="https://investigacion.ucsc.cl" target="_blank" rel="noopener">INVESTIGACIÓN-UCSC</a></li>
+      <li><a href="https://ingenieria.ucsc.cl" target="_blank" rel="noopener">INGENIERÍA-UCSC</a></li>
+      <li><a href="http://dmfa.ucsc.cl" target="_blank" rel="noopener">DMFA-UCSC</a></li>
+      <li><a href="https://ingenieria.ucsc.cl/departamentos/departamento-de-ingenieria-civil" target="_blank" rel="noopener">DIC-UCSC</a></li>
+    </ul>
+  </nav>
 
-<center>
-
-<div id="header">
-<a href=""> INICIO </a> &nbsp; &nbsp; | &nbsp; &nbsp;	
-<a href="https://gianuc2.ucsc.cl" target="_blank">GIANuC&sup2;-UCSC</a> &nbsp; &nbsp; | &nbsp; &nbsp;    	 	
-<a href="https://investigacion.ucsc.cl" target="_blank">INVESTIGACIÓN-UCSC</a> &nbsp; &nbsp; | &nbsp; &nbsp;  
-<a href="https://ingenieria.ucsc.cl" target="_blank">INGENIERÍA-UCSC</a> &nbsp; &nbsp; | &nbsp; &nbsp;
-<a href="http://dmfa.ucsc.cl" target="_blank">DMFA-UCSC</a> &nbsp; &nbsp; | &nbsp; &nbsp;      
-<a href="https://ingenieria.ucsc.cl/departamentos/departamento-de-ingenieria-civil" target="_blank">DIC-UCSC</a>     
-</div>
-
-<div id="container">
-<img src="img/main-banner-2026.png" width="98%">
-
-    <div id="navigation-sup">
-
+  <div class="wrapper">
+    <div class="hero">
+      <a href="./"><img src="img/main-banner-2026.png" alt="Encuentro GIANuC² 2026: Métodos Numéricos para Sistemas Multifísicos - Teoría y Aplicaciones. Viernes 11 de Diciembre" width="900" height="120"></a>
     </div>
 
-    <div id="slider">
-        <div class="wrap"><div id="slide-holder"><div id="slide-runner">
-            <a href="https://ucsc.cl" target="_blank"><img id="img-1" src="img/banner/campus-ucsc.jpg" width="100%"></a> 	
-            <a href="http://doi.org/10.1002/num.23100" target="_blank"><img id="img-2" src="img/banner/Stokes-a-posteriori.png" width="100%"></a> 				
-            <a href="https://arxiv.org/abs/2406.16703" target="_blank"><img id="img-3" src="img/banner/KVBF-channel.jpg" width="100%"></a> 		
-            <a href="https://doi.org/10.1016/j.soildyn.2024.108848" target="_blank"><img id="img-4" src="img/banner/DMT-arena.jpg" width="100%"></a> 				
-            <a href="https://www.ci2ma.udec.cl/publicaciones/prepublicaciones/prepublicacionen.php?id=548" target="_blank"><img id="img-5" src="img/banner/MHD-no-convex.jpg" width="100%"></a> 
-            <a href="https://www.ci2ma.udec.cl/publicaciones/prepublicaciones/prepublicacionen.php?id=555" target="_blank"><img id="img-6" src="img/banner/CBF-a-posteriori.jpg" width="100%"></a>
-                <div id="slide-controls">
-                    <p id="slide-desc" class="text"></p>
-                    <p id="slide-nav"></p>
-                </div>
-        </div></div></div>
-    </div>
-
-    <div id="content">
-        <div id="menu">
-	    <ul class="nav-menu">					
-            <li><a href="#" onclick="frames(1)">Inicio</a></li>
-            <li><a href="#" onclick="frames(2)">Programa</a></li>
-  <!--          <li><a href="#" onclick="frames(3)">Inscripción</a></li> -->
-            <li><a href="#" onclick="frames(4)">Patrocinadores</a></li>
-            <li><a href="#" onclick="frames(5)">Galeria Encuentros</a></li>		    
-        </ul>
-	</div>
-
-	<div id="main-body">
-            <iframe id="enframe" scrolling="auto" frameborder="0" height="635" width ="100%" src="pages/home.html"></iframe>
+    <section class="slider" aria-roledescription="carousel" aria-label="Artículos del grupo">
+        <div class="slide" data-desc="Vista aérea del Campus San Andrés de la UCSC">
+          <a href="https://ucsc.cl" target="_blank" rel="noopener"><img src="img/banner/campus-ucsc.jpg" alt="Vista aérea del Campus San Andrés de la UCSC" width="864" height="200"></a>
         </div>
-    </div>
-    
-    <div id="footer">
-&nbsp; 
-    </div>
+        <div class="slide" data-desc="An a posteriori error analysis for an augmented discontinuous Galerkin method applied to Stokes problem">
+          <a href="http://doi.org/10.1002/num.23100" target="_blank" rel="noopener"><img src="img/banner/Stokes-a-posteriori.png" alt="An a posteriori error analysis for an augmented discontinuous Galerkin method applied to Stokes problem" width="864" height="200" loading="lazy"></a>
+        </div>
+        <div class="slide" data-desc="Velocity-vorticity-pressure mixed formulation for the Kelvin-Voigt-Brinkman-Forchheimer equations">
+          <a href="https://arxiv.org/abs/2406.16703" target="_blank" rel="noopener"><img src="img/banner/KVBF-channel.jpg" alt="Velocity-vorticity-pressure mixed formulation for the Kelvin-Voigt-Brinkman-Forchheimer equations" width="864" height="200" loading="lazy"></a>
+        </div>
+        <div class="slide" data-desc="Uplift-hypoplastic macroelement model for shallow foundations in sand under cyclic combined loading">
+          <a href="https://doi.org/10.1016/j.soildyn.2024.108848" target="_blank" rel="noopener"><img src="img/banner/DMT-arena.jpg" alt="Uplift-hypoplastic macroelement model for shallow foundations in sand under cyclic combined loading" width="864" height="200" loading="lazy"></a>
+        </div>
+        <div class="slide" data-desc="A skew-symmetric-based mixed FEM for stationary MHD flows in highly porous media">
+          <a href="https://www.ci2ma.udec.cl/publicaciones/prepublicaciones/prepublicacionen.php?id=548" target="_blank" rel="noopener"><img src="img/banner/MHD-no-convex.jpg" alt="A skew-symmetric-based mixed FEM for stationary MHD flows in highly porous media" width="864" height="200" loading="lazy"></a>
+        </div>
+        <div class="slide" data-desc="A posteriori error analysis of a mixed finite element method for the stationary convective Brinkman-Forchheimer problem">
+          <a href="https://www.ci2ma.udec.cl/publicaciones/prepublicaciones/prepublicacionen.php?id=555" target="_blank" rel="noopener"><img src="img/banner/CBF-a-posteriori.jpg" alt="A posteriori error analysis of a mixed finite element method for the stationary convective Brinkman-Forchheimer problem" width="864" height="200" loading="lazy"></a>
+        </div>
+      <button class="slider-arrow prev" type="button" aria-label="Banner anterior">&#10094;</button>
+      <button class="slider-arrow next" type="button" aria-label="Banner siguiente">&#10095;</button>
+      <div class="slider-bar">
+        <p class="slider-caption" aria-live="off"></p>
+        <div class="slider-dots"></div>
+      </div>
+    </section>
+  </div>
 
-</div>
+  <div class="wrapper layout">
+    <nav class="sidebar" aria-label="Principal">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu">Menú</button>
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="./" aria-current="page">Inicio</a></li>
+        <li><a href="programa">Programa</a></li>
+        <!-- <li><a href="postulacion">Inscripción</a></li> -->
+        <li><a href="patrocinadores">Patrocinadores</a></li>
+        <li><a href="galeria">Galeria Encuentros</a></li>
+      </ul>
+    </nav>
 
-</center>
+    <main id="contenido">
+    <article class="panel">
+      <h1>Encuentro GIANuC² 2026</h1>
+      <p>El <b>Encuentro GIANuC² 2026: Métodos Numéricos para Sistemas Multifísicos - Teoría y Aplicaciones</b>, es un evento organizado por el <b>Grupo de Investigación en Análisis Numérico y Cálculo Científico</b> (<a href="https://gianuc2.ucsc.cl" target="_blank" rel="noopener">GIANuC²</a>) de la Facultad de Ingeniería, <b>Universidad Católica de la Santísima Concepción</b>, Chile. Se llevará a cabo el <b class="hl">Viernes 11 de Diciembre de 2026</b> en el Auditorio San José Obrero de la UCSC. Tiene como objetivo principal difundir la labor investigativa del GIANuC² a la comunidad universitaria local y externa.</p>
+      <p>El evento no tiene ningún costo, pero solo podrán participar en las actividades las personas inscritas, por favor escribir una solicitud de inscripción al correo: scaucao@ucsc.cl.</p>
 
+      <div class="figures">
+        <figure class="poster">
+          <a href="img/afiche-encuentro-gianuc2-2026.jpg" target="_blank" rel="noopener"><img src="img/afiche-encuentro-gianuc2-2026.jpg" alt="Afiche Encuentro GIANuC&sup2; 2026" width="1069" height="1640"></a>
+        </figure>
+        <figure>
+          <img src="img/gianuc2-2025.jpg" alt="Integrantes del GIANuC&sup2;" width="2000" height="1335">
+          <figcaption>Grupo de Investigación en Análisis Numérico y Cálculo Científico (GIANuC&sup2;)</figcaption>
+        </figure>
+      </div>
+    </article>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <img src="img/footer.png" alt="Universidad Acreditada Nivel Excelencia, CNA Chile · UCSC" width="900" height="59">
+  </footer>
 </body>
-
 </html>
